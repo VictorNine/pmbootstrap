@@ -1,0 +1,30 @@
+pkgname=device-htc-ace
+pkgver=1
+pkgrel=1
+pkgdesc="HTC Desire HD"
+url="https://github.com/postmarketOS"
+arch="noarch"
+license="MIT"
+depends="linux-htc-ace mkbootimg"
+makedepends=""
+install=""
+subpackages=""
+source="
+	deviceinfo
+	initfs-hook.sh
+"
+options="!check"
+
+build() {
+	return 0
+}
+
+package() {
+	install -D -m644 "$srcdir"/deviceinfo \
+		"$pkgdir"/etc/deviceinfo
+	install -D -m644 "$srcdir"/initfs-hook.sh \
+		"$pkgdir"/etc/postmarketos-mkinitfs/hooks/00-${pkgname}.sh
+}
+
+sha512sums="f85acd65168af0521b3bcb16a29308a1c7a23214cc8a729aa76c1b4b387bda3cd4412da9a7108111e49c35700c367f423700c0c93ac80bf9bed6d0af71d6792f  deviceinfo
+3ce2d134aa59677e25a160b5985c552fbf048b237169bbeb85e2b8824f734627064b51c097036db10eee0254064d45d804d17372dffcd1ba246938968fe1e225  initfs-hook.sh"
